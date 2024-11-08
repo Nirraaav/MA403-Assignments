@@ -1,0 +1,137 @@
+\documentclass{article}
+\usepackage{nirav-ma403}
+
+\newcommand{\myname}{Nirav Bhattad (23B3307)}
+\newcommand{\topicname}{MA403: Assignment 2}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\titleBC
+
+\begin{question*}[6.1]
+    Determine which of the following functions are of bounded variation on $\left[0, 1\right]$
+    \begin{enumerate}[label=(\alph*)]
+        \item $f(x) = x^2 \sin \left(\dfrac{1}{x}\right)$ if $x \neq 0$, $f(0) = 0$
+        \item $f(x) = \sqrt{x} \sin \left(\dfrac{1}{x}\right)$ if $x \neq 0$, $f(0) = 0$
+    \end{enumerate}
+\end{question*}
+
+\begin{proof}[(a)]
+    We calculate the derivative of $f$, which comes out to be $f'(x) = 2x \sin \left(\dfrac{1}{x}\right) - \cos \left(\dfrac{1}{x}\right)$ for all $x \in \left(0, 1\right)$. Now note that 
+
+    \[
+        \abs{f'(x)} = \abs{2x \sin \left(\dfrac{1}{x}\right) - \cos \left(\dfrac{1}{x}\right)} \leq \abs{2x \sin \left(\dfrac{1}{x}\right)} + \abs{\cos \left(\dfrac{1}{x}\right)} \leq 2x + 1 < 3
+    \]
+
+    for all $x \in \left(0, 1\right)$. Hence, $f'$ is bounded on $\left(0, 1\right)$ and hence $f$ is of bounded variation on $\left[0, 1\right]$.
+\end{proof}
+
+\begin{proof}[(b)]
+    We choose a partition given by 
+
+    \[
+        P = \left\{ 0, \dfrac{1}{(n+1)\frac{\pi}{2}}, \dfrac{1}{n\frac{\pi}{2}}, \ldots, \dfrac{1}{\frac{\pi}{2}}, 1 \right\}
+    \]
+
+    for some odd $n \in \mathbb{N}$. Then we have 
+
+    \begin{align*}
+        \sum_{i=1}^{n+1} \abs{f(x_i) - f(x_{i-1})} &= \sum_{i=1}^{n} \abs{\sqrt{x_i} \sin \left(\dfrac{1}{x_i}\right) - \sqrt{x_{i-1}} \sin \left(\dfrac{1}{x_{i-1}}\right)} \\
+        &= 2 \sqrt{\dfrac{2}{\pi}} \sum_{\substack{i = 1 \\ i \text{ odd}}}^{n+1} \sqrt{\dfrac{1}{i}} \\
+        &> \sqrt{\dfrac{2}{\pi}} \sum_{i = 1}^{n+1} \sqrt{\dfrac{1}{i}}
+    \end{align*}
+
+    Since the summation $\displaystyle\sum_{i = 1}^{n+1} \sqrt{\dfrac{1}{i}}$ diverges as $n \to \infty$, we conclude that $f$ is not of bounded variation on $\left[0, 1\right]$.
+\end{proof}
+
+\begin{question*}[6.2 (a)]
+    A function $f$, defined on $\left[a, b\right]$, is said to satisfy a uniform Lipschitz condition of order $\alpha > 0$ on $\left[a, b\right]$ if there exists a constant $M > 0$ such that $\abs{f(x) - f(y)} < M \abs{x - y}^\alpha$ for all $x, y \in \left[a, b\right]$.
+    If $f$ is such a function, show that $\alpha > 1$ implies $f$ is constant on $\left[a, b\right]$, whereas $\alpha = 1$ implies that $f$ is of bounded variation on $\left[a, b\right]$.
+\end{question*}
+
+\begin{proof}
+    \subsubsection*{Case 1: \( \alpha > 1 \)}
+
+    Let \( y > x \) be two points in the interval \( [a, b] \). For every \( n \geq 1 \), divide the interval \( (x, y) \) into \( n \) subintervals \( (x_i, x_{i+1}) \) where \( x_i = x + i \dfrac{y - x}{n} \) for \( i = 0, 1, \ldots, n \) such that \( x_0 = x \) and \( x_n = y \). The length of each subinterval is given by:
+    \[
+    x_{i+1} - x_i = \frac{y - x}{n}.
+    \]
+
+    By the hypothesis, for every \( i \), we have:
+    \[
+    |f(x_i) - f(x_{i+1})| < M (x_{i+1} - x_i)^\alpha = M \left(\frac{y - x}{n}\right)^\alpha.
+    \]
+
+    Using the triangle inequality, we can estimate the total change in \( f \) from \( x \) to \( y \):
+    \[
+    |f(x) - f(y)| \leq \sum_{i=1}^{n} |f(x_i) - f(x_{i-1})| < \sum_{i=1}^{n} M \left(\frac{y - x}{n}\right)^\alpha = n M \left(\frac{y - x}{n}\right)^\alpha.
+    \]
+
+    This simplifies to:
+    \[
+    |f(x) - f(y)| < M (y - x)^\alpha n^{1 - \alpha}.
+    \]
+
+    Since we have \( \alpha > 1 \), it follows that \( 1 - \alpha < 0 \). Therefore, as \( n \to \infty \), \( n^{1 - \alpha} \to 0 \). Consequently, we get:
+    \[
+    |f(x) - f(y)| < M (y - x)^\alpha n^{1 - \alpha} \to 0 \quad \text{as } n \to \infty.
+    \]
+
+    Thus, we conclude:
+    \[
+    f(x) = f(y).
+    \]
+
+    Since \( y > x \) were arbitrary, we can conclude that \( f \) is constant on \( [a, b] \).
+
+    \subsubsection*{Case 2: \( \alpha = 1 \)}
+
+    Consider any partition \( P = \{a = x_0, x_1, \ldots, x_n = b\} \) of \( [a, b] \). For every \( i \in \{1, 2, \ldots, n\} \), we have:
+
+    \[
+    \abs{f(x_i) - f(x_{i-1})} < M \abs{x_i - x_{i-1}}
+    \]
+
+    since $\alpha = 1$. So summing up over all \( i \), we get:
+
+    \[
+    \sum_{i=1}^{n} \abs{f(x_i) - f(x_{i-1})} < M \sum_{i=1}^{n} \abs{x_i - x_{i-1}} = M\left(b - a\right)
+    \]
+
+    This means that \( f \) is of bounded variation on \( [a, b] \).
+
+\end{proof}
+
+\clearpage
+
+\begin{question*}[6.11]
+    Prove that every absolutely continuous function on $\left[a, b\right]$ is continuous and of bounded variation on $\left[a, b\right]$.
+\end{question*}
+
+\begin{definition*}[Absolutely Continuous Function]
+    A function $f$ defined on $\left[a, b\right]$ is said to be absolutely continuous on $\left[a, b\right]$ if for every $\varepsilon > 0$, there exists $\delta > 0$ such that for every finite disjoint collection of open intervals $\left\{ (a_i, b_i) \right\}$ in $\left[a, b\right]$ with $\sum_i (b_i - a_i) < \delta$, we have $\sum_i \abs{f(b_i) - f(a_i)} < \varepsilon$.
+\end{definition*}
+
+\begin{proof}
+    Let $f$ be an absolutely continuous function on $\left[a, b\right]$. By definition, if we choose only $1$ interval $(a, b)$ in the collection, then we have $\abs{f(b) - f(a)} < \varepsilon$ for $\abs{b - a} < \delta$. This implies that $f$ is uniformly continuous, and hence continuous on $\left[a, b\right]$ since for every $\varepsilon > 0$, we can choose $\delta > 0$ such that $\abs{b - a} < \delta \implies \abs{f(b) - f(a)} < \varepsilon$.
+
+    Left \(\varepsilon = 1\) and \( P' = \{a = x_0, \ldots, x_n = b\} \) be a partition of \([a,b]\) with the property that \( x_i - x_{i-1} = \frac{\delta}{2} \) for all \( i \in \{1, 2, \ldots, n-1\} \), and \( x_n - x_{n-1} \leq \frac{\delta}{2} \) where $\delta$ is as in the definition of absolute continuity. Then, we have:
+    \[
+    n = \left\lfloor \dfrac{2(b - a)}{\delta} \right\rfloor + 1.
+    \]
+    Now pick any partition \( P = \{t_0,\ldots,t_s\} \) and let \( P^{\star} = P \cup P' \) such that \( P^{\star} = \{z_0 = a, \ldots, z_n = b\} \). Let \( P^{\star}_i \) be the set of points in \( P^{\star} \) contained in \([x_{i-1}, x_i]\) for \( i \in \{1,\ldots,n\} \), i.e.,
+    \[
+    P^{\star}_i = \left\{ z_{i_k} \in P^{\star} : z_{i_k} \in [x_{i-1}, x_i] \right\}
+    \]
+
+    Thus, the sum can be estimated as follows:
+    \[
+    \sum_{i=1}^s |f(t_i) - f(t_{i-1})| \leq \sum_{i=1}^{n} \sum_{k} |f(z_{i_k}) - f(z_{i_{k-1}})| \leq \sum_{i = 1}^{n} \varepsilon = \sum_{i = 1}^{n} 1 = n
+    \]
+
+    Hence, \( f \) is of bounded variation on \([a,b]\).
+\end{proof}
+
+\end{document}

@@ -1,0 +1,195 @@
+\documentclass{article}
+\usepackage{nirav-ma403}
+
+\newcommand{\myname}{Nirav Bhattad (23B3307)}
+\newcommand{\topicname}{MA403: Assignment 1}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\titleBC
+
+\begin{question*}
+    Test for convergence ($p$ and $q$ denote fixed real numbers):
+    \begin{enumerate}[label=(\alph*)]
+        \item $\displaystyle\sum_{n=1}^{\infty} n^3 e^{-n}$
+        \item $\displaystyle\sum_{n=1}^{\infty} p^n n^p  \; \; (p > 0)$
+        \item $\displaystyle\sum_{n=2}^{\infty} \dfrac{1}{n^p - n^q} \; \; (0 < q < p)$
+        \item $\displaystyle\sum_{n=1}^{\infty} n^{-1 - \frac{1}{n}}$
+        \item $\displaystyle\sum_{n=1}^{\infty} \dfrac{1}{p^n - q^n} \; \; (0 < q < p)$
+        \item $\displaystyle\sum_{n=1}^{\infty} \dfrac{1}{n \log(1 + \frac{1}{n})}$
+    \end{enumerate}
+\end{question*}
+
+\begin{proof}[(a)]
+    We can use the ratio test to test for convergence of the series $\displaystyle\sum_{n=1}^{\infty} n^3 e^{-n}$.
+    \begin{align*}
+        \limsup\limits_{n \to \infty} \left| \dfrac{a_{n+1}}{a_n} \right| 
+        &= \limsup\limits_{n \to \infty} \left| \dfrac{(n+1)^3 e^{-(n+1)}}{n^3 e^{-n}} \right| \\
+        % &= \limsup\limits_{n \to \infty} \left| \dfrac{(n+1)^3 e^{-1}}{n^3} \right| \\
+        &= \limsup\limits_{n \to \infty} \left| \dfrac{(n+1)^3}{n^3} \cdot e^{-1} \right| \\
+        &= \limsup\limits_{n \to \infty} \left| \dfrac{n^3 + 3n^2 + 3n + 1}{n^3} \cdot e^{-1} \right| \\
+        &= \limsup\limits_{n \to \infty} \left| \left( 1 + \dfrac{3}{n} + \dfrac{3}{n^2} + \dfrac{1}{n^3} \right) \cdot e^{-1} \right| \\
+        &= e^{-1} \\ 
+        &< 1
+    \end{align*}
+
+    Since the limit is less than $1$, the series $\displaystyle\sum_{n=1}^{\infty} n^3 e^{-n}$ converges.
+\end{proof}
+
+\begin{proof}[(b)]
+    We can use the ratio test to test for convergence of the series $\displaystyle\sum_{n=1}^{\infty} p^n n^p$.
+    \begin{align*}
+        \limsup\limits_{n \to \infty} \left| \dfrac{a_{n+1}}{a_n} \right| 
+        &= \limsup\limits_{n \to \infty} \left| \dfrac{p^{n+1} (n+1)^p}{p^n n^p} \right| \\
+        &= \limsup\limits_{n \to \infty} \left| \dfrac{p(n+1)^p}{n^p} \right| \\
+        &= \limsup\limits_{n \to \infty} \left| p \left( 1 + \dfrac{1}{n} \right)^p \right| \\
+        &= \limsup\limits_{n \to \infty} p \quad \text{(since $n \to \infty$, and $p > 0$, so $\left( 1 + \dfrac{1}{n} \right)^p \to 1$)} \\
+        &= p
+    \end{align*}
+
+    If $p < 1$, then the sequence is absolutely convergent by the Ratio Test and hence the series $\displaystyle\sum_{n=1}^{\infty} p^n n^p$ converges. If $p > 1$, then the series is divergent by the Ratio Test. If $p = 1$, then the series is given by $\displaystyle\sum_{n=1}^{\infty} n$, which is divergent.
+
+    Hence, the series $\displaystyle\sum_{n=1}^{\infty} p^n n^p$ converges if $0 < p < 1$, and diverges otherwise.
+
+\end{proof}
+
+\begin{remark*}
+    $\left( 1 + \frac{1}{n} \right)^p \to 1$ as $n \to \infty$ because $p > 0$. This can be seen as follows:
+    \begin{align*}
+        \lim\limits_{n \to \infty} \left( 1 + \dfrac{1}{n} \right)^p 
+        &= \lim\limits_{n \to \infty} \left( 1 + \dfrac{p}{n} + \dfrac{p(p-1)}{2n^2} + \cdots + \dfrac{p(p-1)\cdots(p-n+1)}{n^n} + \cdots \right) \\
+        &= 1 + 0 + 0 + \cdots + 0 + \cdots \\
+        &= 1
+    \end{align*}
+
+    % Each successive term in the summation is of the form $\dfrac{p(p-1)\cdots(p-k+1)}{n^k}$, which tends to $0$ as $n \to \infty$, as it is smaller than $\left(\dfrac{p}{k}\right)^k$.
+
+    Each successive term in the summation is of the form $\dfrac{p(p-1)\cdots(p-k+1)}{n^k}$, which tends to $0$ as $n \to \infty$, as it is smaller than the previous term $\dfrac{p(p-1)\cdots(p-k+2)}{n^{k-1}}$. This can be seen as follows:
+    \begin{align*}
+        \dfrac{p(p-1)\cdots(p-k+1)}{n^k} 
+        &= \dfrac{p}{n} \cdot \dfrac{p-1}{n} \cdots \dfrac{p-k+1}{n} \\
+        &< \dfrac{p}{n} \cdot \dfrac{p-1}{n} \cdots \dfrac{p-k+2}{n} \\
+        &= \dfrac{p(p-1)\cdots(p-k+2)}{n^{k-1}}
+    \end{align*}
+
+    Since the limit of the 1st term is $0$, the limit of the each successive term is also $0$ and hence the limit of the entire summation is $1$.
+\end{remark*}
+
+\clearpage
+
+\begin{proof}[(c)]
+    We can use the limit comparison test to test for convergence of the series $\displaystyle\sum_{n=2}^{\infty} \dfrac{1}{n^p - n^q}$.
+
+    Let $a_n = \dfrac{1}{n^p - n^q}$ and $b_n = \dfrac{1}{n^p}$. Then, we have
+    \begin{align*}
+        \lim\limits_{n \to \infty} \dfrac{a_n}{b_n} 
+        &= \lim\limits_{n \to \infty} \dfrac{n^p}{n^p - n^q} \\
+        &= \lim\limits_{n \to \infty} \dfrac{1}{1 - n^{q-p}} \\
+        &= 1
+    \end{align*}
+
+    where the last limit is equal to $1$ because $p > q > 0$, and so $n^{q-p} \to 0$ as $n \to \infty$. \\
+
+    This implies that $\displaystyle\sum_{n=2}^{\infty} \dfrac{1}{n^p - n^q}$ converges if and only if $\displaystyle\sum_{n=2}^{\infty} \dfrac{1}{n^p}$ converges. Since the latter converges, whenever $p > 1$, the former also converges. Whenever $0 < p \leq 1$, the latter diverges, and so does the former.
+\end{proof}
+
+\begin{remark*}[$p$-series]
+    The series $\displaystyle\sum_{n=1}^{\infty} \dfrac{1}{n^p}$ is known as the $p$-series. It converges if $p > 1$ and diverges if $0 < p \leq 1$.
+
+    \begin{proof}
+        % prove using cauchy condensation test
+        We can use the Cauchy condensation test to prove the convergence/divergence of the $p$-series. Let $a_n = \dfrac{1}{n^p}$. Then, we have
+        \begin{align*}
+            2^n a_{2^n} 
+            &= 2^n \cdot \dfrac{1}{(2^n)^p} \\
+            &= 2^{n(1-p)}
+        \end{align*}
+
+        If $p = 1$, then $2^{n(1-p)} = 1$, which is a constant. So, the condensed series becomes $\displaystyle\sum_{n=1}^{\infty} 1$, which diverges. If $p > 1$, then $2^{n(1-p)} \to 0$ as $n \to \infty$, and so the condensed series becomes a geometric series, with sum given by $\dfrac{1}{1 - 2^{1-p}}$, which converges. If $0 < p < 1$, then $2^{n(1-p)} \to \infty$ as $n \to \infty$, and so the condensed series becomes a geometric series with common ratio greater than $1$, which diverges. \\
+
+        This implies that the original series $\displaystyle\sum_{n=1}^{\infty} \dfrac{1}{n^p}$ converges if $p > 1$ and diverges if $0 < p \leq 1$.
+    \end{proof}
+
+\end{remark*}
+
+\begin{proof}[(d)]
+    We can use the limit comparison test to test for convergence of the series $\displaystyle\sum_{n=1}^{\infty} n^{-1 - \frac{1}{n}}$.
+
+    Let $a_n = n^{-1 - \frac{1}{n}}$ and $b_n = n^{-1}$. Then, we have
+    \begin{align*}
+        \lim\limits_{n \to \infty} \dfrac{a_n}{b_n} 
+        &= \lim\limits_{n \to \infty} \dfrac{n^{-1 - \frac{1}{n}}}{n^{-1}} \\
+        &= \lim\limits_{n \to \infty} \left( n^{\frac{1}{n}} \right)^{-1} \\
+        &= 1
+    \end{align*}
+
+    This implies that $\displaystyle\sum_{n=1}^{\infty} n^{-1 - \frac{1}{n}}$ converges if and only if $\displaystyle\sum_{n=1}^{\infty} n^{-1}$ converges. Since the latter diverges, the former also diverges.
+\end{proof}
+
+% \clearpage
+
+\begin{remark*}[$\lim n^{\frac{1}{n}} = 1$]
+    We can compute the limit $\lim\limits_{n \to \infty} n^{\frac{1}{n}}$ as follows:
+
+    For all $n \in \mathbb{N}$, $n^{\frac{1}{n}} > 1$, so we can write $n^{\frac{1}{n}} = 1 + h_n$, where $h_n = n^{\frac{1}{n}} - 1 > 0$. Then, we have
+
+    \begin{align*}
+        n &= (1 + h_n)^n \\
+        &= 1 + nh_n + \dfrac{n(n-1)}{2} h_n^2 + \cdots + h_n^n \\
+        &> \dfrac{n(n-1)}{2} h_n^2 \\
+        \implies h_n &< \sqrt{\dfrac{2n}{n(n-1)}} = \sqrt{\dfrac{2}{n-1}}
+    \end{align*}
+
+    Taking limits on both sides, we get
+
+    \begin{align*}
+        \lim\limits_{n \to \infty} h_n &\leq \lim\limits_{n \to \infty} \sqrt{\dfrac{2}{n-1}} = 0 \\
+        \implies \lim\limits_{n \to \infty} n^{\frac{1}{n}} &= \lim\limits_{n \to \infty} (1 + h_n) = 1
+    \end{align*}
+\end{remark*}
+
+\begin{proof}[(e)]
+    We can use the limit comparison test to test for convergence of the series $\displaystyle\sum_{n=1}^{\infty} \dfrac{1}{p^n - q^n}$.
+
+    Let $a_n = \dfrac{1}{p^n - q^n}$ and $b_n = \dfrac{1}{p^n}$. Then, we have
+    \begin{align*}
+        \lim\limits_{n \to \infty} \dfrac{a_n}{b_n} 
+        &= \lim\limits_{n \to \infty} \dfrac{p^n}{p^n - q^n} \\
+        &= \lim\limits_{n \to \infty} \dfrac{1}{1 - \left(\dfrac{q}{p}\right)^n} \\
+        &= 1
+    \end{align*}
+
+    This implies that $\displaystyle\sum_{n=1}^{\infty} \dfrac{1}{p^n - q^n}$ converges if and only if $\displaystyle\sum_{n=1}^{\infty} \dfrac{1}{p^n}$ converges. Since the latter converges, whenever $p > 1$, the former also converges. Whenever $0 < p \leq 1$, the latter diverges, and so does the former.
+\end{proof}
+
+\begin{remark*}
+    The series $\displaystyle\sum_{n=1}^{\infty} \dfrac{1}{p^n}$ is a geometric series, with sum given by $\dfrac{1}{p - 1}$. It converges if $p > 1$ and diverges if $0 < p \leq 1$ because the common ratio must be less than $1$ for convergence.
+\end{remark*}
+
+\clearpage
+
+\begin{proof}[(f)]
+    General term of the series is given by $a_n = \dfrac{1}{n \log(1 + \frac{1}{n})}$. We can use the limit comparison test to test for convergence of the series $\displaystyle\sum_{n=1}^{\infty} \dfrac{1}{n \log(1 + \frac{1}{n})}$.
+
+    Let $b_n = 1$, then we have
+    \begin{align*}
+        \lim\limits_{n \to \infty} \dfrac{a_n}{b_n} 
+        &= \lim\limits_{n \to \infty} \dfrac{1}{n \log(1 + \frac{1}{n})} \\
+        &= 1
+    \end{align*}
+
+
+
+    This implies that $\displaystyle\sum_{n=1}^{\infty} \dfrac{1}{n \log(1 + \frac{1}{n})}$ converges if and only if $\displaystyle\sum_{n=1}^{\infty} 1$ converges. Since the latter diverges, the former also diverges.
+
+\end{proof}
+
+\begin{remark*}
+    We see that $\lim\limits_{n \to \infty} \dfrac{1}{n \log(1 + \frac{1}{n})}$ tends to $1$ as follows:
+
+    By definition of euler's constant $e$, we have that $\lim\limits_{n \to \infty} \left(1 + \dfrac{1}{n}\right)^n = e$. Taking logarithm on both sides, we get $\lim\limits_{n \to \infty} n \log\left(1 + \dfrac{1}{n}\right) = 1$. Hence, $\lim\limits_{n \to \infty} \dfrac{1}{n \log(1 + \frac{1}{n})} = 1$.
+\end{remark*}
+
+\end{document}
