@@ -157,18 +157,18 @@
     \begin{align*}
         \lim\limits_{n \to \infty} \dfrac{a_n}{b_n} 
         &= \lim\limits_{n \to \infty} \dfrac{p^n}{p^n - q^n} \\
-        &= \lim\limits_{n \to \infty} \dfrac{1}{1 - \left(\dfrac{q}{p}\right)^n} \\
+        &= \lim\limits_{n \to \infty} \dfrac{1}{1 - \left(\frac{q}{p}\right)^n} \\
         &= 1
     \end{align*}
 
     This implies that $\displaystyle\sum_{n=1}^{\infty} \dfrac{1}{p^n - q^n}$ converges if and only if $\displaystyle\sum_{n=1}^{\infty} \dfrac{1}{p^n}$ converges. Since the latter converges, whenever $p > 1$, the former also converges. Whenever $0 < p \leq 1$, the latter diverges, and so does the former.
 \end{proof}
 
+% \clearpage
+
 \begin{remark*}
     The series $\displaystyle\sum_{n=1}^{\infty} \dfrac{1}{p^n}$ is a geometric series, with sum given by $\dfrac{1}{p - 1}$. It converges if $p > 1$ and diverges if $0 < p \leq 1$ because the common ratio must be less than $1$ for convergence.
 \end{remark*}
-
-\clearpage
 
 \begin{proof}[(f)]
     General term of the series is given by $a_n = \dfrac{1}{n \log(1 + \frac{1}{n})}$. We can use the limit comparison test to test for convergence of the series $\displaystyle\sum_{n=1}^{\infty} \dfrac{1}{n \log(1 + \frac{1}{n})}$.
