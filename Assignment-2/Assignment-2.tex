@@ -117,11 +117,9 @@
 \begin{proof}
     Let $f$ be an absolutely continuous function on $\left[a, b\right]$. By definition, if we choose only $1$ interval $(a, b)$ in the collection, then we have $\abs{f(b) - f(a)} < \varepsilon$ for $\abs{b - a} < \delta$. This implies that $f$ is uniformly continuous, and hence continuous on $\left[a, b\right]$ since for every $\varepsilon > 0$, we can choose $\delta > 0$ such that $\abs{b - a} < \delta \implies \abs{f(b) - f(a)} < \varepsilon$.
 
-    Left \(\varepsilon = 1\) and \( P' = \{a = x_0, \ldots, x_n = b\} \) be a partition of \([a,b]\) with the property that \( x_i - x_{i-1} = \frac{\delta}{2} \) for all \( i \in \{1, 2, \ldots, n-1\} \), and \( x_n - x_{n-1} \leq \frac{\delta}{2} \) where $\delta$ is as in the definition of absolute continuity. Then, we have:
-    \[
-    n = \left\lfloor \dfrac{2(b - a)}{\delta} \right\rfloor + 1.
-    \]
-    Now pick any partition \( P = \{t_0,\ldots,t_s\} \) and let \( P^{\star} = P \cup P' \) such that \( P^{\star} = \{z_0 = a, \ldots, z_n = b\} \). Let \( P^{\star}_i \) be the set of points in \( P^{\star} \) contained in \([x_{i-1}, x_i]\) for \( i \in \{1,\ldots,n\} \), i.e.,
+    Left \(\varepsilon = 1\) and \( P' = \{a = x_0, \ldots, x_n = b\} \) be a partition of \([a,b]\) with the property that \( x_i - x_{i-1} = \frac{\delta}{2} \) for all \( i \in \{1, 2, \ldots, n-1\} \), and \( x_n - x_{n-1} \leq \frac{\delta}{2} \) where $\delta$ is as in the definition of absolute continuity.
+
+    Now pick any partition \( P = \{t_0,\ldots,t_s\} \) and let \( P^{\star} = P \bigcup P' \) such that \( P^{\star} = \{z_0 = a, \ldots, z_n = b\} \). Let \( P^{\star}_i \) be the set of points in \( P^{\star} \) contained in \([x_{i-1}, x_i]\) for \( i \in \{1,\ldots,n\} \), i.e.,
     \[
     P^{\star}_i = \left\{ z_{i_k} \in P^{\star} : z_{i_k} \in [x_{i-1}, x_i] \right\}
     \]
